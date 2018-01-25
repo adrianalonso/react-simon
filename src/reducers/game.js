@@ -1,7 +1,6 @@
 const initialState = {
     'cpu': [],
     'player': [],
-    'scoring': 0,
     'currentScore': 0,
     'state': "initial",
     'current': false
@@ -24,10 +23,21 @@ const reducer = (state = initialState, action) => {
         case "ADD_CPU_COLOR":
             let cpu = state.cpu;
             cpu.push(action.value);
-
             return {
                 ...state,
-                 player,
+                 cpu:cpu,
+            }
+
+        case "SET_CURRENT_COLOR":
+            return {
+                ...state,
+                 current:action.value,
+            }
+
+        case "RESET_PLAYER_ARRAY":
+            return {
+                ...state,
+                 player:[],
             }
 
         case "ADD_PLAYER_COLOR":
@@ -37,6 +47,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                  player,
+            }
+
+        case "CHANGE_GAME_STATE":
+
+            return {
+                ...state,
+                 state: action.value,
             }
 
             

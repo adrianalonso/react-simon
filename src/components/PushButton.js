@@ -9,7 +9,6 @@ class PushButton extends Component {
   }
 
 
-
   render() {
     return (
       <div 
@@ -21,6 +20,7 @@ class PushButton extends Component {
         })+" "+this.props.color}
           >
         
+    
       </div>
     );
   }
@@ -29,6 +29,8 @@ class PushButton extends Component {
 PushButton.propTypes={
     active: PropTypes.bool.isRequired,
     color: PropTypes.bool.isRequired,
+    chooseColor: PropTypes.func.isRequired,
+    
 }
 
 export default PushButton;

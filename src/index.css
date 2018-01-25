@@ -1,9 +1,9 @@
 body{
-  background:#303130
+  background:black
 }
 
 .simon{
-  background:#303130;
+  background:black;
   margin:0;
   padding:0;
   width: 100%;
@@ -16,30 +16,32 @@ body{
 }
 
 
-.simon .game h1{color: #009688; text-align:center; font-size: 42px; margin-bottom:50px; text-transform: uppercase; font-family: 'Roboto', sans-serif;}
+.simon .game h1{color: white; text-align:center; font-size: 42px; margin-bottom:50px; text-transform: uppercase; font-family: 'Roboto', sans-serif;}
 
 .pusher{ background:black; border-radius: 100%; width:600px; height:600px; margin: 0 auto; position: relative}
-.push-button{ width: 150px; height:150px; background:white; border-radius: 100%; position:absolute; top:50%; left: 50%}
+.push-button{ width: 150px; height:150px; background:white; border-radius: 100%; position:absolute; top:50%; left: 50%; cursor:pointer}
 
 .push-button.red{background:rgba(228,1,12,0.5); left: 36%; top: 3%}
-.push-button.red.active{background:rgba(228,1,12,1)}
+.push-button.red.active, .push-button.red:hover{background:rgba(228,1,12,1); box-shadow: 0 0 38px rgba(228,1,12,1)}
 
 .push-button.orange{background:rgba(242,137,0,0.5); left: 62%; top: 15%}
-.push-button.orange.active{background:rgba(242,137,0,1); }
+.push-button.orange.active, .push-button.orange:hover{background:rgba(242,137,0,1); box-shadow: 0 0 38px rgba(242,137,0,1)}
 
 .push-button.yellow{background:rgba(255,238,0,0.5); left: 71%; top: 44%}
-.push-button.yellow.active{background:rgba(255,238,0,1)}
+.push-button.yellow.active, .push-button.yellow:hover{background:rgba(255,238,0,1); box-shadow: 0 0 38px rgba(255,238,0,1)}
 
 .push-button.green{background:rgba(0,151,6,0.5); left: 52%; top: 68%}
-.push-button.green.active{background:rgba(0,151,6,1); left: 52%; top: 68%}
+.push-button.green.active, .push-button.green:hover{background:rgba(0,151,6,1); left: 52%; top: 68%; box-shadow: 0 0 38px rgba(0,151,6,1)}
 
 .push-button.blue{background:rgba(0,145,252,0.5); left: 23%; top: 67%}
-.push-button.blue.active{background:rgba(0,145,252,1); }
+.push-button.blue.active, .push-button.blue:hover{background:rgba(0,145,252,1); box-shadow: 0 0 38px rgba(0,145,252,1)}
 
 .push-button.dark-blue{background:rgba(0,74,209,0.5); left: 5%; top: 44%}
-.push-button.dark-blue.active{background:rgba(0,74,209,1)}
+.push-button.dark-blue.active, .push-button.dark-blue:hover{background:rgba(0,74,209,1); box-shadow: 0 0 38px rgba(0,74,209,1)}
 
 .push-button.violet{background:rgba(145,2,129,0.5); left: 10%; top: 15%}
-.push-button.violet.active{background:rgba(145,2,129,1);}
+.push-button.violet.active, .push-button.violet:hover{background:rgba(145,2,129,1); box-shadow: 0 0 38px rgba(145,2,129,1)}
 
 .score{color: white}
+
+.DEBUG{color:lime}

@@ -16,23 +16,24 @@ class Game extends Component {
   }
 
   render() {
+
+    let colors= Colors.getColors();
+    let currentColor= this.props.game.current;
+    let scoring= this.props.game.cpu.length;
     return (
       <div className="game">
-        <h1>Simon Say</h1>
+        <h1>Simon Says</h1>
 
         {this.props.game.state == "initial" ? <button onClick={this.startGame.bind(this)}> Empezar Juego</button> : ""}
 
         <div className="pusher">
-            <PushButton color={Colors.COLOR_RED} chooseColor={this.chooseColor.bind(this)}/>
-            <PushButton color={Colors.COLOR_ORANGE} chooseColor={this.chooseColor.bind(this)}/>
-            <PushButton color={Colors.COLOR_YELLOW} chooseColor={this.chooseColor.bind(this)}/>
-            <PushButton color={Colors.COLOR_GREEN} chooseColor={this.chooseColor.bind(this)}/>
-            <PushButton color={Colors.COLOR_BLUE} chooseColor={this.chooseColor.bind(this)}/>
-            <PushButton color={Colors.COLOR_DARK_BLUE} chooseColor={this.chooseColor.bind(this)}/>
-            <PushButton color={Colors.COLOR_VIOLET} chooseColor={this.chooseColor.bind(this)}/>
+          {colors.map((value)=>{
+            return  <PushButton color={value} active={value == currentColor} chooseColor={this.chooseColor.bind(this)}/>
+          })}
         </div>
-            <Score score={this.props.game.scoring}/>
-            {JSON.stringify(this.props.game)}
+
+          <Score score={scoring}/>
+            <p className="DEBUG">{JSON.stringify(this.props.game)}</p>
       </div>
     );
   }
