@@ -70,6 +70,10 @@ export function playPlayer(color) {
     return function (dispatch, getState) {
         let {game} = getState();
         if (game.state === "playing_player") {
+
+            let myAudio = new Audio('audio/'+color+'.wav');
+            myAudio.play();
+
             dispatch(setCurrentColor(color));
 
             setTimeout(function () {
@@ -101,7 +105,7 @@ function checkPlayer(dispatch, cpu, player) {
         if (cpu.length === player.length) {
 
             setTimeout(function () {
-                dispatch(changeGameState("playing_cpu"))
+                dispatch(changeGameState("playing_cpu"));
                 dispatch(playCPU());
             }, 1000)
 
@@ -121,14 +125,16 @@ function cpuLights(dispatch, colors) {
         let color = colors.shift();
 
         dispatch(setCurrentColor(color));
+        let myAudio = new Audio('audio/'+color+'.wav');
+        myAudio.play();
 
         setTimeout(function () {
             dispatch(setCurrentColor(null));
 
             setTimeout(function () {
                 cpuLights(dispatch, colors)
-            }, 500)
-        }, 1000)
+            }, 250)
+        }, 500)
 
     } else {
         dispatch(changeGameState("playing_player"))
