@@ -40,87 +40,97 @@ export function resetPlayerArray() {
     }
 }
 
+/**
+ *
+ * @returns {Function}
+ */
 export function playCPU() {
-    return function(dispatch, getState) {
+    return function (dispatch, getState) {
 
-        dispatch(resetPlayerArray())
-        let color =Colors.getRandomColor();
+        dispatch(changeGameState("playing_cpu"));
+
+        dispatch(resetPlayerArray());
+        let color = Colors.getRandomColor();
         dispatch(addCpuColor(color));
         let {game} = getState();
 
-        var cloneColors = JSON.parse(JSON.stringify(game.cpu));
-    
+        let cloneColors = JSON.parse(JSON.stringify(game.cpu));
+
         cpuLights(dispatch, cloneColors);
 
     }
 }
 
-
-
+/**
+ *
+ * @param color
+ * @returns {Function}
+ */
 export function playPlayer(color) {
-    return function(dispatch, getState) {
-        
-        dispatch(setCurrentColor(color));
-        
-        setTimeout(function(){
-            dispatch(setCurrentColor(null));
-       },200)
-
-        dispatch(addPlayerColor(color));
+    return function (dispatch, getState) {
         let {game} = getState();
-        checkPlayer(dispatch, game.cpu, game.player)
+        if (game.state === "playing_player") {
+            dispatch(setCurrentColor(color));
+
+            setTimeout(function () {
+                dispatch(setCurrentColor(null));
+            }, 200);
+
+            dispatch(addPlayerColor(color));
+
+            checkPlayer(dispatch, game.cpu, game.player)
+        }
     }
 }
 
-function checkPlayer(dispatch, cpu, player){
+/**
+ *
+ * @param dispatch
+ * @param cpu
+ * @param player
+ */
+function checkPlayer(dispatch, cpu, player) {
 
-    let lastPosition=player.length-1;
-    let playerColor=player[lastPosition];
-    
+    let lastPosition = player.length - 1;
+    let playerColor = player[lastPosition];
 
-    if(cpu[lastPosition]!== playerColor){
-        alert("HAS PERDIDO");
-        dispatch(startGame())
-        setTimeout(function(){
-            dispatch(playCPU());
-       },1000)
+    if (cpu[lastPosition] !== playerColor) {
+        dispatch(changeGameState("game_over"))
+    } else {
+
+        if (cpu.length === player.length) {
+
+            setTimeout(function () {
+                dispatch(changeGameState("playing_cpu"))
+                dispatch(playCPU());
+            }, 1000)
+
+        }
     }
-    
-    if(cpu.length == player.length){
-        setTimeout(function(){
-            dispatch(playCPU());
-       },1000)
-        
-    }
-
 
 }
 
+/**
+ *
+ * @param dispatch
+ * @param colors
+ */
 function cpuLights(dispatch, colors) {
-    
-     if(colors.length > 0){
-         let color= colors.shift();
-             
-         dispatch(setCurrentColor(color));
- 
-         setTimeout(function(){
-             dispatch(setCurrentColor(null));
 
-                setTimeout(function(){
-                     cpuLights(dispatch, colors)
-                },500)
-         },1000)
-        
-     }else{
-         dispatch(changeGameState("playing_player"))
-     }
- }
+    if (colors.length > 0) {
+        let color = colors.shift();
 
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        break;
-      }
+        dispatch(setCurrentColor(color));
+
+        setTimeout(function () {
+            dispatch(setCurrentColor(null));
+
+            setTimeout(function () {
+                cpuLights(dispatch, colors)
+            }, 500)
+        }, 1000)
+
+    } else {
+        dispatch(changeGameState("playing_player"))
     }
-  }
+}

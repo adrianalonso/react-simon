@@ -1,9 +1,8 @@
 body{
-  background:black
+  background:#121212
 }
 
 .simon{
-  background:black;
   margin:0;
   padding:0;
   width: 100%;
@@ -18,7 +17,7 @@ body{
 
 .simon .game h1{color: white; text-align:center; font-size: 42px; margin-bottom:50px; text-transform: uppercase; font-family: 'Roboto', sans-serif;}
 
-.pusher{ background:black; border-radius: 100%; width:600px; height:600px; margin: 0 auto; position: relative}
+.pusher{  width:600px; height:600px; margin: 0 auto; position: relative}
 .push-button{ width: 150px; height:150px; background:white; border-radius: 100%; position:absolute; top:50%; left: 50%; cursor:pointer}
 
 .push-button.red{background:rgba(228,1,12,0.5); left: 36%; top: 3%}
@@ -42,6 +41,85 @@ body{
 .push-button.violet{background:rgba(145,2,129,0.5); left: 10%; top: 15%}
 .push-button.violet.active, .push-button.violet:hover{background:rgba(145,2,129,1); box-shadow: 0 0 38px rgba(145,2,129,1)}
 
-.score{color: white}
+.score{color: white ; position: absolute;
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -18px;
+  font-size: 78px;
+  margin-top: -50px;
+}
+
+.start-game{
+  color: white;
+  font-size: 37px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'roboto';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -80px;
+  margin-top: -40px;
+  cursor:pointer;
+}
+
+/* Pulse Grow */
+@-webkit-keyframes hvr-pulse-grow {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+@keyframes hvr-pulse-grow {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+.hvr-pulse-grow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+}
+.hvr-pulse-grow:hover, .hvr-pulse-grow:focus, .hvr-pulse-grow:active {
+  -webkit-animation-name: hvr-pulse-grow;
+  animation-name: hvr-pulse-grow;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+
+.reset-game{
+  color: #ff0000;
+  font-size: 62px;
+  text-align: center;
+  display: block;
+  font-weight: bold;
+  font-family: "roboto";
+}
+
+.restart-game{
+  color: white;
+  font-size: 27px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'roboto';
+  position: absolute;
+  left: 13%;
+  top: 53%;
+  margin-left: -80px;
+  margin-top: -40px;
+  cursor: pointer;
+  width: 100%;
+}
 
 .DEBUG{color:lime}

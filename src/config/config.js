@@ -1,2 +1,2 @@
-export const CONFIG="config";
+export const CONFIG = "config";
 
