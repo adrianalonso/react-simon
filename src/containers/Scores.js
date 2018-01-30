@@ -11,18 +11,20 @@ class Scores extends Component {
         }
     }
 
-    componentDidMount(){
-        let scores= firebase.database().ref("score");
-        let self=this;
+    componentDidMount() {
+        let scores = firebase.database().ref("score");
+        let self = this;
         scores.on('value', (snapshot) => {
 
-            let values=snapshot.val();
-            let scores=[];
+            let values = snapshot.val();
+            let scores = [];
             for (let value in values) {
                 scores.push(
                     values[value]
                 );
             }
+
+            scores.reverse();
 
             self.setState({scores});
         });
@@ -36,8 +38,8 @@ class Scores extends Component {
                 <h1>Últimas Partidas</h1>
 
                 <ul className="last-games">
-                    {this.state.scores.map((value)=>{
-                        return <li> <strong>{value.nombre}</strong>: {value.score} puntos</li>
+                    {this.state.scores.map((value) => {
+                        return <li><strong>{value.nombre}</strong>: {value.score} puntos</li>
                     })}
                 </ul>
 
@@ -53,9 +55,7 @@ let mapStateToProps = function (state) {
 };
 
 let mapDispatchToProps = function (dispatch) {
-    return {
-
-    }
+    return {}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null)(Scores)

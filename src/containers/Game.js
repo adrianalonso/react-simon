@@ -16,6 +16,10 @@ class Game extends Component {
         this.props.guessColor(color);
     }
 
+    changePlayerName(value){
+
+        this.props.changePlayerGame(value.target.value)
+    }
     render() {
 
         let colors = Colors.getColors();
@@ -38,8 +42,11 @@ class Game extends Component {
                     })}
 
                     {state === "initial" ?
-                        <a className="start-game hvr-pulse-grow" onClick={this.startGame.bind(this)}> Empezar <br/>
-                            Juego</a> : ""}
+                        <div className="start-game">
+                            <input name="name" value={this.props.game.playerName} onChange={this.changePlayerName.bind(this)} />
+                        <a className="hvr-pulse-grow" onClick={this.startGame.bind(this)}> Empezar <br/>
+                            Juego</a>
+                        </div>: ""}
                     {state === "playing_cpu" || state === "playing_player" ? <Score score={scoring}/> : ""}
                     {state === "game_over" ?
                         <p className="restart-game hvr-pulse-grow" onClick={this.startGame.bind(this)}>
@@ -62,8 +69,12 @@ let mapStateToProps = function (state) {
 let mapDispatchToProps = function (dispatch) {
     return {
         startGame: () => {
-            dispatch(GameActions.startGame())
-            dispatch(GameActions.playCPU())
+            dispatch(GameActions.startGame());
+            dispatch(GameActions.playCPU());
+        },
+        changePlayerGame: (playerName) => {
+            dispatch(GameActions.changePlayerName(playerName));
+
         },
         guessColor: (color) => {
             dispatch(GameActions.playPlayer(color))

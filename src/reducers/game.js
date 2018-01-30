@@ -3,12 +3,12 @@ const initialState = {
     'player': [],
     'currentScore': 0,
     'state': "initial",
-    'current': false
+    'current': false,
+    'playerName': "JUGADOR 1"
 };
 
 const reducer = (state = initialState, action) => {
 
-    console.log("ACTIOOONS", action);
     switch (action.type) {
         case "START_GAME":
             return {
@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
                 player:[],
                 cpu:[],
                 current:false
-            }
+            };
 
         case "ADD_CPU_COLOR":
             let cpu = state.cpu;
@@ -26,19 +26,19 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                  cpu:cpu,
-            }
+           };
 
         case "SET_CURRENT_COLOR":
             return {
                 ...state,
                  current:action.value,
-            }
+            };
 
         case "RESET_PLAYER_ARRAY":
             return {
                 ...state,
                  player:[],
-            }
+            };
 
         case "ADD_PLAYER_COLOR":
             let player = state.player;
@@ -47,15 +47,21 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                  player,
-            }
+            };
 
         case "CHANGE_GAME_STATE":
 
             return {
                 ...state,
                  state: action.value,
-            }
+            };
 
+        case "CHANGE_PLAYER_NAME":
+
+            return {
+                ...state,
+                playerName: action.value,
+            };
             
         default: {
             return state;

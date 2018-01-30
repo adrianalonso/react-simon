@@ -41,6 +41,13 @@ export function resetPlayerArray() {
     }
 }
 
+export function changePlayerName(playerName) {
+    return {
+        type: "CHANGE_PLAYER_NAME",
+        value: playerName
+    }
+}
+
 /**
  *
  * @returns {Function}
@@ -83,7 +90,7 @@ export function playPlayer(color) {
 
             dispatch(addPlayerColor(color));
 
-            checkPlayer(dispatch, game.cpu, game.player)
+            checkPlayer(dispatch, game, game.cpu, game.player)
         }
     }
 }
@@ -91,10 +98,11 @@ export function playPlayer(color) {
 /**
  *
  * @param dispatch
+ * @param game
  * @param cpu
  * @param player
  */
-function checkPlayer(dispatch, cpu, player) {
+function checkPlayer(dispatch, game, cpu, player) {
 
     let lastPosition = player.length - 1;
     let playerColor = player[lastPosition];
@@ -102,7 +110,7 @@ function checkPlayer(dispatch, cpu, player) {
     if (cpu[lastPosition] !== playerColor) {
 
         const score = firebase.database().ref("/score/");
-        score.push({'nombre':"jugador1", 'score': cpu.length});
+        score.push({'nombre':game.playerName, 'score': cpu.length});
 
         dispatch(changeGameState("game_over"))
     } else {

@@ -53,13 +53,13 @@ body{
 
 .start-game{
   color: white;
-  font-size: 37px;
+  font-size: 30px;
   text-align: center;
   text-transform: uppercase;
   font-family: 'roboto';
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 45%;
   margin-left: -80px;
   margin-top: -40px;
   cursor:pointer;
@@ -131,4 +131,20 @@ body{
 }
 
 .link{ font-size: 20px; color:white}
+
+.start-game input{
+   display: block;
+   background: #121212;
+   border: 0px solid #121212;
+   border-bottom: 2px solid white;
+   height: 28px;
+   color: white;
+   margin-bottom: 10px;
+   text-transform: uppercase;
+   font-weight: bold;
+   text-align: center;
+ }
+.start-game input:focus{
+outline:0
+}
 .DEBUG{color:lime}
