@@ -1,4 +1,5 @@
 import * as Colors from "../config/colors";
+import * as firebase from 'firebase'
 
 export function startGame() {
     return {
@@ -99,6 +100,10 @@ function checkPlayer(dispatch, cpu, player) {
     let playerColor = player[lastPosition];
 
     if (cpu[lastPosition] !== playerColor) {
+
+        const score = firebase.database().ref("/score/");
+        score.push({'nombre':"jugador1", 'score': cpu.length});
+
         dispatch(changeGameState("game_over"))
     } else {
 

@@ -122,4 +122,13 @@ body{
   width: 100%;
 }
 
+.last-games{
+  text-align: center;
+  font-size: 24px;
+  color: white;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.link{ font-size: 20px; color:white}
 .DEBUG{color:lime}

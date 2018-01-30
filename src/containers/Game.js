@@ -4,6 +4,7 @@ import Score from "../components/Score"
 import * as Colors from "../config/colors"
 import {connect} from 'react-redux';
 import * as GameActions from "../actions/game"
+import {Link} from 'react-router-dom'
 
 class Game extends Component {
 
@@ -44,9 +45,9 @@ class Game extends Component {
                         <p className="restart-game hvr-pulse-grow" onClick={this.startGame.bind(this)}>
                             Reintentar </p> : ""}
 
-
                 </div>
                 {state === "game_over" ? <a className="reset-game">HAS PERDIDO</a> : ""}
+                <Link to={"/scores"} className="link">Records</Link>
 
             </div>
         );
