@@ -2,4 +2,4 @@
 
 Ejemplo React + Redux del juego Simon realizado para una formación interna.
 
-Demo: https://react-simon.firebaseio.com/
+Demo: https://react-simon.firebaseapp.com/
